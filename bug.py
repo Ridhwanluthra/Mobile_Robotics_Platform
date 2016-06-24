@@ -1,38 +1,81 @@
-class map(object):
-	def __init__(self):
-		self.map = [[0,0,0,0,1,0],[0,0,1,0,0,0],[1,1,1,0,0,0],[1,0,0,0,1,1],[0,0,0,0,0,0]]
+from structure import robot, grid, movement
+class bug(object):
+	def move_x(self, bot, grid):
+		y_direction = bot.fy - bot.y_temp
+		x_direction = bot.fx - bot.x_temp
+		if x_direction >= 0:
+			for i in range(bot.y_temp, bot.fy):
+				if grid.grid[bot.x_temp][bot.y_temp] != 1 or grid.grid[bot.x_temp][bot.y_temp] != 5:
+					grid.grid[bot.x_temp][bot.y_temp] = 3
+					bot.y_temp += 1
+					y_direction = bot.fy - bot.y_temp
+					x_direction = bot.fx - bot.x_temp
+				elif grid.grid[bot.x_temp][bot.y_temp] == 5:
+					print "goal reached"
+				else:
+					if y_direction >= 0:
+						for j in range(bot.x_temp, bot.fx):
+							if grid.grid[bot.x_temp][bot.y_temp] != 1 or grid.grid[bot.x_temp][bot.y_temp] != 5:
+								grid.grid[bot.x_temp][bot.y_temp] = 4
+								bot.x_temp += 1
+								y_direction = bot.fy - bot.y_temp
+								x_direction = bot.fx - bot.x_temp
+							elif grid.grid[bot.x_temp][bot.y_temp] == 5:
+								return "goal reached"
+							else:
+								pass
+					elif y_direction < 0:
+						for j in range(bot.x_temp, bot.fy):
+							if grid.grid[bot.x_temp][bot.y_temp] != 1 or grid.grid[bot.x_temp][bot.y_temp] != 5:
+								grid.grid[bot.x_temp][bot.y_temp] = 3
+								bot.x_temp -= 1
+								y_direction = bot.fy - bot.y_temp
+								x_direction = bot.fx - bot.x_temp
+							elif grid.grid[bot.x_temp][bot.y_temp] == 5:
+								return "goal reached"
+							else:
+								pass
+		elif x_direction < 0:
+			for i in range(bot.y_temp, bot.fy):
+				if grid.grid[bot.x_temp][bot.y_temp] != 1 or grid.grid[bot.x_temp][bot.y_temp] != 5:
+					grid.grid[bot.x_temp][bot.y_temp] = 3
+					bot.y_temp -= 1
+					y_direction = bot.fy - bot.y_temp
+					x_direction = bot.fx - bot.x_temp
+				elif grid.grid[bot.x_temp][bot.y_temp] == 5:
+					return "goal reached"
+				else:
+					if y_direction >= 0:
+						for j in range(bot.x_temp, bot.fx):
+							if grid.grid[bot.x_temp][bot.y_temp] != 1 or grid.grid[bot.x_temp][bot.y_temp] != 5:
+								grid.grid[bot.x_temp][bot.y_temp] = 3
+								bot.x_temp += 1
+								y_direction = bot.fy - bot.y_temp
+								x_direction = bot.fx - bot.x_temp
+							elif grid.grid[bot.x_temp][bot.y_temp] == 5:
+								return "goal reached"
+							else:
+								pass
+					elif y_direction < 0:
+						for j in range(bot.x_temp, bot.fy):
+							if grid.grid[bot.x_temp][bot.y_temp] != 1 or grid.grid[bot.x_temp][bot.y_temp] != 5:
+								grid.grid[bot.x_temp][bot.y_temp] = 3
+								bot.x_temp -= 1
+								y_direction = bot.fy - bot.y_temp
+								x_direction = bot.fx - bot.x_temp
+							elif grid.grid[bot.x_temp][bot.y_temp] == 5:
+								return "goal reached"
+							else:
+								pass
 
-	def set_map(self, map):
-		self.map = map
-
-	def set_goal(self, x, y):
-		self.map[x][y] = 5
-
-	def create_map(self):
-		pass
 
 
-class robot(object):
-	def __init__(self):
-		self.x = 0
-		self.y = 0
-		self.fx = 0
-		self.fy = 0
-
-	def set_start(self, x, y):
-		self.x = x
-		self.y = y
-
-	def set_goal(self, map_obj, x, y):
-		self.fx = x
-		self.fy = y
-		map_obj.set_goal(self.fx, self.fy)
-
-
-def move():
-	map = map()
-	bot = robot()
-	bot.set_start(0, 0)
-	bot.set_goal(map, 10, 10)
-	y_direction = bot.fy - bot.y
-	x_direction = bot.fx - bot.x
+	def find_path(self):
+		lab_grid = grid()
+		bot = robot()
+		bot.set_origin(0, 0)
+		bot.set_goal(lab_grid,0,9)
+		y_direction = bot.fy - bot.y
+		x_direction = bot.fx - bot.x
+		if x_direction > y_direction:
+			move_x()

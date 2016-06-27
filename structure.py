@@ -42,6 +42,12 @@ class grid(object):
 		self.add_single_obstacle(5,7)
 		#self.print_grid()
 
+	def big_map(self):
+		self.create_grid(100,100)
+		self.add_obstacle(25,25,0,90)
+		self.add_obstacle(50,50,10,100)
+		self.add_obstacle(75,57,0,90)
+
 	#prints the grid in a more human readable form
 	def print_grid(self):
 		rows = len(self.grid)

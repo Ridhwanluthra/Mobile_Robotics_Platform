@@ -1,20 +1,14 @@
 int HR =5 ,HL =6, R=9,F=10;
 int motor_speed =250; //(0-255)
 //double c=90;
-double a_init, a_deg;
 double unit_distance = .9507;
 int deg_dis = 3;
 int x;
 int y;
+int a, b;
 
-bool a = false, b = false, c = false;
-int a1=9, a2=9, a3=9, enc_rtcount=0;
-int r_en=7, l_en=3;
-
-
-bool aa = false, bb = false, cc = false;
-int aa1=9, aa2=9, aa3=9, enc_ltcount=0;
-
+int enc_rtcount = 0, enc_ltcount = 0;
+int r_en = 7, l_en = 3;
 
 void setup() {
   Serial.begin(9600);
@@ -73,56 +67,22 @@ void forward_movt (int dist){
 
 }
  
- void call_rtenc(){
-    x = digitalRead(r_en);;
-    
-    Serial.print(x);
-    Serial.print("\t\t");
-    Serial.println (enc_rtcount);  
-  if(!a){
-    a=true;
-    a1 = x;
-  }
-  else if (!b){
-    a2 = x;
-    if(a1!=a2){
-      b = true;
-    }
-  }
-  else if (!c){
-  a3 = x;
-  if(a3!=a2){
-      b= false,c=false;
-      enc_rtcount+=1;   
-    }
+void call_rtenc() {
+  b = a;
+  a = digitalRead(l_en);
+  
+  if((a == 0 && b == 1) || (a == 1 && b == 0)) {
+    enc_rtcount++;
   }
 }
 
- void call_ltenc(){
-    y=digitalRead(l_en);;
-    
-    Serial.print(y);
-    Serial.print("\t\t");
-    Serial.println (enc_ltcount);  
-  if(!aa){
-    aa=true;
-    aa1 = y;
-  }
-  else if (!bb){
-    aa2 = y;
-    if(aa1!=aa2){
-      bb = true;
-    }
-  }
-  else if (!cc){
-  aa3 = y;
-  if(aa3!=aa2){
-      bb= false,cc=false;
-      enc_ltcount+=1;   
-    }
-  }
+void call_ltenc() {
+  y = x;
+  x = digitalRead(l_en);
   
-  
+  if((y == 0 && x == 1) || (y == 1 && x == 0)) {
+    enc_ltcount++;
+  }
 }
 
 

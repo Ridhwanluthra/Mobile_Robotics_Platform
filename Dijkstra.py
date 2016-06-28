@@ -1,10 +1,10 @@
-
+"""
 graph = ((0,1,0,0,0,0,),
         (1,0,1,0,1,0,),
         (0,1,0,0,0,1,),
         (0,0,0,0,1,0,),
         (0,1,0,1,0,0,),
-        (0,0,1,0,0,0,),)
+        (0,0,1,0,0,0,),)"""
 
 from structure import grid
 import time
@@ -104,16 +104,17 @@ def dijkstra(Graph, source):
     return dist, previous
 
 def display_solution(predecessor):
-    cell = 5
+    cell = 9
     while cell:
         print cell
         cell = predecessor[cell]
     print(0)
 
-#grid = grid()
+grid = grid()
 #grid.big_map()
-#grid.print_grid()
-#graph = create_graph(grid.grid)
+grid.robolab()
+grid.print_grid()
+graph = create_graph(grid.grid)
 #print graph
 dist, previous = dijkstra(graph, 0)
 #print len(dist)

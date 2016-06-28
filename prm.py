@@ -40,6 +40,7 @@ def create_graph(grid):
 
                     if grid[i+1][j] == 0:
                         graph[index][int(str(i+1).zfill(2) + str(j).zfill(2))] = 1
+                        print 'hi'
 
                     if j == 0:
                         pass
@@ -48,7 +49,26 @@ def create_graph(grid):
 
                     if grid[i][j+1] == 0:
                         graph[index][int(str(i).zfill(2) + str(j+1).zfill(2))] = 1
+                    """
+                    #diagonal elements
+                    if i == 0:
+                        pass
+                    elif grid[i-1][j+1] == 0:
+                        graph[index][int(str(i-1).zfill(2) + str(j+1).zfill(2))] = 1
 
+                    if i == 0 or j == 0:
+                        pass
+                    elif grid[i-1][j-1] == 0:
+                        graph[index][int(str(i-1).zfill(2) + str(j-1).zfill(2))] = 1
+
+                    if grid[i+1][j+1] == 0:
+                        graph[index][int(str(i+1).zfill(2) + str(j+1).zfill(2))] = 1
+
+                    if j == 0:
+                        pass
+                    elif grid[i+1][j-1] == 0:
+                        graph[index][int(str(i+1).zfill(2) + str(j-1).zfill(2))] = 1
+                    """
                 except ValueError:
                     pass
                 except IndexError:
@@ -68,13 +88,14 @@ def prm(Graph, source):
     previous = [infinity]*n
     dist[source] = 0
     unoptimized_vertices = list(range(n))
-
+    count = 0
     while unoptimized_vertices:
         # vertex in Q with smallest dist[]
-        u = min(unoptimized_vertices, key = lambda n:dist[n])
-        print u
+        u = min(unoptimized_vertices, key = lambda n: dist[n])
         unoptimized_vertices.remove(u)
+        count += 1
         if dist[u] == infinity:
+            print "not possible after: ", count
             break # all remaining vertices are inaccessible from source
         for v in range(n):               # each neighbor v of u
             if Graph[u][v] and (v in unoptimized_vertices): # where v has not yet been visited
@@ -87,19 +108,21 @@ def prm(Graph, source):
     return dist, previous
 
 def display_solution(predecessor):
-    cell = 5
+    cell = 99
     while cell:
         print cell
         cell = predecessor[cell]
     print(0)
 
-#grid = grid()
+grid = grid()
 #grid.big_map()
+grid.robolab()
+#grid.example_grid()
 #grid.print_grid()
-#graph = create_graph(grid.grid)
-#print graph
+graph = create_graph(grid.grid)
+print graph
 dist, previous = prm(graph, 0)
 #print len(dist)
 #print len(previous)
 #print dist, previous
-display_solution(previous)
+#display_solution(previous)

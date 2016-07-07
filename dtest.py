@@ -1,13 +1,50 @@
-
+"""
 graph = ((0,1,0,0,0,0,),
         (1,0,1,0,1,0,),
         (0,1,0,0,0,1,),
         (0,0,0,0,1,0,),
         (0,1,0,1,0,0,),
         (0,0,1,0,0,0,),)
-
+"""
 from structure import grid
 import time
+
+def check_collision_after_prelim(grid,x1,y1,x2,y2):
+    for x in range(x1,x2+1):
+        m = abs((y2-y1)/(x2-x1))
+        c = y1 - m*x1
+        y = m*x + c
+        try:
+            if grid[x][y] == 1:
+                return False
+        except IndexError:
+            #print x, y
+            return False
+    return True
+
+def no_collision(grid, x1, y1, x2, y2):
+    if grid[x2][y2] == 1:
+        return False
+    if y2-y1 == 0:
+        for x in range(x1, x2):
+            if grid[x][y1]:
+                return False
+        return True
+    try:
+        m = (y2-y1)/(x2-x1)
+        if x1 < x2:
+            if check_collision_after_prelim(grid,x1,y1,x2,y2):
+                return True
+            return False
+        elif x2 < x1:
+            if check_collision_after_prelim(grid,x2,y1,x1,y2):
+                return True
+            return False
+    except ZeroDivisionError:
+        for y in range(y1, y2):
+            if grid[x1][y] == 1:
+                return False
+        return True
 
 def create_graph(grid):
     graph = []
@@ -20,7 +57,7 @@ def create_graph(grid):
     for i in range(0, rows*columns):
         graph.append([])
         for j in range(0, rows*columns):
-        	graph[i].append(0)
+            graph[i].append(0)
 
     elapsed_time_empty = time.time() - start_time
 
@@ -30,48 +67,17 @@ def create_graph(grid):
 
     for i in range(0, rows):
         for j in range(0, columns):
-            index = int(str(i) + str(j))
             if grid[i][j] == 0:
-                try:
-                    if i == 0:
-                        pass
-                    elif grid[i-1][j] == 0:
-                        graph[index][int(str(i-1) + str(j))] = 1
+                index = int(str(i) + str(j))
 
-                    if grid[i+1][j] == 0:
-                        graph[index][int(str(i+1) + str(j))] = 1
-
-                    if j == 0:
-                        pass
-                    elif grid[i][j-1] == 0:
-                        graph[index][int(str(i) + str(j-1))] = 1
-
-                    if grid[i][j+1] == 0:
-                        graph[index][int(str(i) + str(j+1))] = 1
-                    
-                    #diagonal elements
-                    if i == 0:
-                        pass
-                    elif grid[i-1][j+1] == 0:
-                        graph[index][int(str(i-1) + str(j+1))] = 1
-
-                    if i == 0 or j == 0:
-                        pass
-                    elif grid[i-1][j-1] == 0:
-                        graph[index][int(str(i-1) + str(j-1))] = 1
-
-                    if grid[i+1][j+1] == 0:
-                        graph[index][int(str(i+1) + str(j+1))] = 1
-
-                    if j == 0:
-                        pass
-                    elif grid[i+1][j-1] == 0:
-                        graph[index][int(str(i+1) + str(j-1))] = 1
-                    
-                except ValueError:
-                    pass
-                except IndexError:
-                    pass
+                for x in range(i-3, i+3):
+                    for y in range(j-3, j+3):
+                        if x < 0 or y < 0 or x >= rows or y >= columns:
+                            pass
+                        else:
+                            if no_collision(grid,i,j,x,y):
+                                #print index, x, y
+                                graph[index][int(str(x) + str(y))] = 1
     elapsed_time_convert = time.time() - start_time
     print "convert =" ,elapsed_time_convert
     return graph
@@ -80,7 +86,7 @@ def prm(Graph, source):
     start_time = time.time()
 
     infinity = float('infinity')
-    n = len(graph)
+    n = len(Graph)
     #empty list for distances from source
     dist = [infinity]*n
     #empty list for the previous node in the path
@@ -117,10 +123,18 @@ grid = grid()
 #grid.big_map()
 grid.robolab()
 #grid.example_grid()
-#grid.print_grid()
+grid.print_grid()
 graph = create_graph(grid.grid)
-#print graph
+"""
+def print_grid(grid):
+        rows = len(grid)
+        for i in range(0,rows):
+            print grid[i]
+"""
+
+print graph[4]
 dist, previous = prm(graph, 0)
+#print graph
 #print len(dist)
 #print len(previous)
 #print dist, previous

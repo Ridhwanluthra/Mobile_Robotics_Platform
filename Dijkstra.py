@@ -6,7 +6,7 @@ graph = ((0,1,0,0,0,0,),
         (0,1,0,1,0,0,),
         (0,0,1,0,0,0,),)"""
 
-from structure import grid
+from utils.structure import grid
 import time
 
 def create_graph(grid):
@@ -112,6 +112,15 @@ def display_solution(predecessor):
         cell = predecessor[cell]
     print(0)
 
+def get_solution(predecessor):
+    array = []
+    cell = 9
+    while cell:
+        array.append(cell)
+        cell = predecessor[cell]
+    print array
+    print(0)
+
 grid = grid()
 #grid.big_map()
 grid.robolab()
@@ -122,4 +131,4 @@ dist, previous = dijkstra(graph, 0)
 #print len(dist)
 #print len(previous)
 print dist, previous
-#display_solution(previous)
+display_solution(previous)

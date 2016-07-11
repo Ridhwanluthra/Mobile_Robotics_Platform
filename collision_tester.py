@@ -1,4 +1,4 @@
-from structure import grid
+from utils.structure import grid
 
 def check_collision_after_prelim(grid,x1,y1,x2,y2):
     for x in range(x1,x2+1):

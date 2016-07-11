@@ -15,7 +15,7 @@ def run_kalman_filter():
 def update_measurement_in_state(state_matrix, process_covariance_matrix):
 	global count
 	# ALL THE MATRICES NEEDED FOR CALCULATIONS
-	control_values = np.matrix('1,1,45; 2,2,45; 3,3,45; 4,4,45; 5,5,45', dtype = 'float')
+	control_values = np.matrix('1,1,45; 3,3,45; 6,6,45; 10,10,45; 15,15,45', dtype = 'float')
 	observation_matrix = np.matrix('1,0,0,0,0; 0,1,0,0,0; 0,0,1,0,0', dtype = 'float')
 	measurement_error_covariance_matrix = np.matrix('100,100,30; 100,100,30; 30,30,9', dtype = 'float')
 	I = numpy.matlib.identity(5)
@@ -47,12 +47,12 @@ def predict_next_state(state_matrix, process_covariance_matrix):
 	# ALL THE MATRICES NEEDED FOR CALCULATIONS
 	state_transition_matrix = np.matrix([[1,0,0,dt,0], [0,1,0,0,dt], [0,0,1,0,0], [0,0,0,1,0], [0,0,0,0,1]], dtype = 'float')
 	#state_transition_matrix = np.matrix('1,0,0,dt,0; 0,1,0,0,dt; 0,0,1,0,0; 0,0,0,1,0; 0,0,0,0,1', dtype = 'float')
-	control_variable_matrix = 0
+	control_variable_matrix = np.matrix([[1],[1],[0]])
 	control_transition_matrix = np.matrix([[(dt*dt)/2.,0,0], [0,(dt*dt)/2.,0], [0,0,dt], [dt,0,0], [0,dt,0]], dtype = 'float')
 	#control_transition_matrix = np.matrix('(dt^2.)/2.,0,0; 0,(dt^2.)/2.,0; 0,0,dt; dt,0,0; 0,dt,0', dtype = 'float')
 	
 	# UPDATE THE STATE MATRIX ACCORDING TO BEST PREDICTION
-	state_matrix = state_transition_matrix * state_matrix #+ control_transition_matrix * control_variable_matrix
+	state_matrix = state_transition_matrix * state_matrix + control_transition_matrix * control_variable_matrix
 
 	# UPDATE THE PROCESS COVARIANCE MATRIX BASED ON INPUTS
 	process_covariance_matrix = state_transition_matrix * process_covariance_matrix * state_transition_matrix.T

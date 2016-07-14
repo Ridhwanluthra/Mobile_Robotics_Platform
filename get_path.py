@@ -1,27 +1,38 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import interpolate
+import prm
 
-x = np.array([0,1,2,3,4,5,6,7,6,5,4,3,2,1,0])
-y = np.array([0,1,2,3,4,4,5,6,7,8,7,8,9,9,9])
+array = prm.give_ans()
 
-tck, u = interpolate.splprep([x, y], s = 0)
+def extract_xy(array):
+	x = np.array([], dtype = 'int')
+	y = np.array([], dtype = 'int')
+	for i in range(len(array)):
+		temp = array[i]
+		xy = str(temp).zfill(2)
+		x = np.append(x, int(xy[0]))
+		y = np.append(y, int(xy[1]))
+	return [x, y]
+
+xys = extract_xy(array)
+print xys
+x = xys[0]
+y = xys[1]
+#print x, y
+
+#x = np.array([0,1,2,3,4,5,6,7,6,5,4,3,2,1,0])
+#y = np.array([0,1,2,3,4,4,5,6,7,8,7,8,9,9,9])
+
+tck, u = interpolate.splprep([x, y], s = 0.03)
 unew = np.arange(0,9,0.03)
-print unew
-out = interpolate.splev(unew, tck)
+#print unew
+out = interpolate.splev(unew, tck, ext = 1)
 fig = plt.figure()
 plt.plot(x, y, '--', out[0], out[1])
 plt.legend(['Linear', 'cubic spline'])
 plt.axis([0, 10, 0, 10])
 plt.title('spline of parametrically defined curve')
-"""
-a = 35
-b = 35
-
-plt.scatter(a, b)
-plt.grid(True,'dashes',10)
-"""
-
 
 
 

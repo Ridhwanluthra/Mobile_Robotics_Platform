@@ -6,7 +6,7 @@ graph = ((0,1,0,0,0,0,),
         (0,1,0,1,0,0,),
         (0,0,1,0,0,0,),)
 """
-from structure import grid
+from utils.structure import grid
 import time
 
 def create_graph_100(grid):
@@ -147,7 +147,7 @@ def prm(Graph, source):
     start_time = time.time()
 
     infinity = float('infinity')
-    n = len(graph)
+    n = len(Graph)
     #empty list for distances from source
     dist = [infinity]*n
     #empty list for the previous node in the path
@@ -185,16 +185,27 @@ def display_solution(predecessor):
     array.reverse()
     return array
 
+def get_solution(predecessor):
+    array = []
+    cell = 9
+    while cell:
+        array.append(cell)
+        cell = predecessor[cell]
+    array.append(0)
+    array.reverse()
+    print array
+    return array
 
-grid = grid()
-#grid.big_map()
-grid.robolab()
-#grid.example_grid()
-#grid.print_grid()
-graph = create_graph(grid.grid)
-#print graph
-dist, previous = prm(graph, 0)
-#print len(dist)
-#print len(previous)
-#print dist, previous
-lis = display_solution(previous)
+def give_ans():
+    g = grid()
+    #grid.big_map()
+    g.robolab()
+    #grid.example_grid()
+    #grid.print_grid()
+    graph = create_graph(g.grid)
+    #print graph
+    dist, previous = prm(graph, 0)
+    #print len(dist)
+    #print len(previous)
+    #print dist, previous
+    return get_solution(previous)

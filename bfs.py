@@ -1,4 +1,4 @@
-from structure import grid
+from utils.structure import grid
 
 def create_dict(grid):
 	dict_map = {}
@@ -40,7 +40,7 @@ def create_dict(grid):
 grid = grid()
 grid.robolab()
 graph = create_dict(grid.grid)
-#print graph
+print graph
 
 def bfs_paths(graph, start, goal):
 	counter = 0
@@ -57,8 +57,8 @@ def bfs_paths(graph, start, goal):
 
 
 # [['A', 'C', 'F'], ['A', 'B', 'E', 'F']]
-for i in bfs_paths(graph, 0, 9):
-	print i
+#for i in bfs_paths(graph, 0, 9):
+#	print i
 """
 def shortest_path(graph, start, goal):
     try:

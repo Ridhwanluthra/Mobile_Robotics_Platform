@@ -1,15 +1,11 @@
-"""
-from utils.structure import grid
+#from utils.structure import grid
 
-g = grid()
-g.big_map()
-g.add_obstacle(25,25,0,90)
-g.add_obstacle(50,50,10,100)
-g.add_obstacle(75,57,0,90)
-grid = g.grid
+#g = grid()
+#g.robolab()
+#grid = g.grid
 #for i in range(len(grid)):
 #	print grid[i]
-"""
+
 """
 grid = [[0,1,0,0,0,0],
 		[0,1,0,0,0,0],
@@ -30,10 +26,11 @@ heuristic = [[5,4,4,4,4,4],
 			 [5,4,3,2,1,1],
 			 [5,4,3,2,1,0]]
 """
-init=[0,0]
+#init=[0,0]
+init = []
 
-goal = [0, len(grid[0])-1]
-
+#goal = [0, len(grid[0])-1]
+goal = []
 
 delta = [[-1,0],
 		 [0,-1],
@@ -46,7 +43,7 @@ delta = [[-1,0],
 
 #delta_name = ['^','<','v','>']
 
-cost = 1
+#cost = 1
 
 
 def check_all(grid, xy):
@@ -132,7 +129,7 @@ def build_heuristic(grid, goal):
 	#	print heuristic[i]
 	return heuristic
 
-def search(grid, goal):
+def search(grid, init, goal):
 	heuristic = build_heuristic(grid, goal)
 	closed = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
 	
@@ -205,3 +202,7 @@ def search(grid, goal):
 	print x_cords
 	print y_cords
 	return x_cords, y_cords
+
+#def run_lab():
+#	a = search(grid, init, goal)
+#	return a

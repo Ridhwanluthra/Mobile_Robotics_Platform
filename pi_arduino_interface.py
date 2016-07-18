@@ -40,10 +40,11 @@ def find_displacement(xy_array):
 
 		input_array = [d, theta]
 		
-		#print input_array
 		bot_location = [x, y, theta]
 		px.append(x)
 		py.append(y)
+		pd.append(d)
+		pt.append(theta_deg)
 
 		move(input_array)
 		#print bot_location
@@ -51,5 +52,6 @@ def find_displacement(xy_array):
 	plt.plot(px, py)
 	#plt.axis([0, 10, 0, 10])
 	plt.show()
+	return pd, pt
 
 #find_displacement(out)

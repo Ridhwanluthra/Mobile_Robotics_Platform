@@ -14,6 +14,7 @@ def run_motion_planning(grid, init, goal):
 	list_of_xy = search.search(grid, init, goal)
 	interpolated_xy = interpolate_path(list_of_xy)
 	plot_path(list_of_xy, interpolated_xy)
-	find_displacement(interpolated_xy)
+	input_array = find_displacement(interpolated_xy)
+	print input_array
 
 run_motion_planning(grid, init, goal)

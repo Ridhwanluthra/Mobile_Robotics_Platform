@@ -1,12 +1,25 @@
 #from get_path import out, xys, array
 import numpy as np
 import matplotlib.pyplot as plt
+import serial as ser
 
 input_array = []
 bot_location = [0, 0, 0]
 
 def move(input_array):
-	pass
+	data = [1]
+	string = '1 '
+	arduino = ser.Serial('/dev/ttyUSB1', 115200)
+	for i in range(len(input_array[0])):
+		"""
+		data.append(input_array[0][i])
+		data.append(input_array[1][i])
+		"""
+		string += str(input_array[0][i]) + ' '
+		string += str(input_array[1][i]) + ' '
+	print string
+	arduino.write(string)
+
 
 def slice_array(xy_array):
 	counter = 0
@@ -46,7 +59,6 @@ def find_displacement(xy_array):
 		pd.append(d)
 		pt.append(theta_deg)
 
-		move(input_array)
 		#print bot_location
 		#print input_array
 	plt.plot(px, py)
@@ -55,3 +67,5 @@ def find_displacement(xy_array):
 	return pd, pt
 
 #find_displacement(out)
+arr = [[10,20,10,20,10],[10,350,10,350,10]]
+move(arr)

@@ -13,7 +13,7 @@ for i in range(len(list_obstacles)):
 	x.append(list_obstacles[i][0])
 	y.append(list_obstacles[i][1])
 
-"""
+
 plt.plot(x,y,'ro')
 plt.show()
 """
@@ -32,4 +32,4 @@ for xs in range(1,80):
 				if x[i] >= x_axis[xs-1] and x[i] <= x_axis[xs] and y[j] >= y_axis[ys-1] and y[j] <= y_axis[ys]:
 					grid[xs][ys] = 1
 					
-print grid
+print grid"""

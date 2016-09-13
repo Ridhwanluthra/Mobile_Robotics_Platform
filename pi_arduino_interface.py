@@ -8,8 +8,8 @@ bot_location = [0, 0, 0]
 
 def move(input_array):
 	data = [1]
-	string = '1 '
-	arduino = ser.Serial('/dev/ttyUSB1', 115200)
+	string = ''
+	arduino = ser.Serial('/dev/ttyUSB0', 115200)
 	for i in range(len(input_array[0])):
 		"""
 		data.append(input_array[0][i])
@@ -67,5 +67,5 @@ def find_displacement(xy_array):
 	return pd, pt
 
 #find_displacement(out)
-arr = [[10,20,10,20,10],[10,350,10,350,10]]
+arr = [[10,20,10,20,10],[10,130,10,130,10]]
 move(arr)

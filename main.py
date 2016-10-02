@@ -1,7 +1,7 @@
 from utils.structure import grid
 from pi_arduino_interface import find_displacement
 import search
-from get_path import interpolate_path, plot_path
+from get_smooth_path import interpolate_path, plot_path
 
 g = grid()
 g.robolab()

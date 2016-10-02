@@ -1,11 +1,35 @@
-# find_path
-finding the best path for a robot to move on in a given map
+# Mobile Robotics Platform
+Includes all the essentials to building a mobile robot capable to knowing its location in a given map and finding its way from one location to the other.
 
-bug.py
-	continues to travel in the direction of the goal until it hits an obstecle
+main.py
+	Calls all the other functions and this is the only function that needs to be called to start the process
 
-create_map.py
-	a simple interface to create a map
+motion_planning.py
+	motion planning class, should include all the motion planning algorithms (need to do this)
 
-scan_path.py
-	scans the enitre map and then suggests possible paths
+search.py
+	executes A* search in the given grid.
+
+get_smooth_path.py
+	gives the smooth path from a 2d array of xy coordinates given.
+
+particle_localisation.py
+	a simple simulation showing localisation using particle filters.
+
+particle_test.py
+	localisation using particle filters without the simulation.	
+
+gradient_decent.py
+	a simple gradient decent algorithm to find the actual movement any expected movement.
+
+map_from_matlab.py
+	an atempt to create a map from a matlab image given showing the obstaces.
+
+localisation_kalman.py
+	localisation using kalman filters (needs to be corrected and landmarks be added)
+
+collision_tester.py
+	a way to test if the robot colides in an obstacle (started initialy now not sure if needed)
+
+dead_reconing.py
+	localisation using dead_reconing, the most basic algorithm in localisation.

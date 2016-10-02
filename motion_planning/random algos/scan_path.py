@@ -1,4 +1,4 @@
-from structure import grid, robot
+from utils.structure import grid, robot
 
 class scan_grid(object):
 	def scan(self):

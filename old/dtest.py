@@ -6,7 +6,7 @@ graph = ((0,1,0,0,0,0,),
         (0,1,0,1,0,0,),
         (0,0,1,0,0,0,),)
 """
-from structure import grid
+from mobile_robotics_platform.utils.structure import grid
 import time
 
 def check_collision_after_prelim(grid,x1,y1,x2,y2):

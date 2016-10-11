@@ -5,7 +5,6 @@
 
 
 from math import *
-import matplotlib as pyplot
 import random
 
 

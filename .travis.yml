@@ -4,8 +4,11 @@ language:
 python:
   - "2.7"
 
+before install:
+  - sudo apt-get install python-numpy python-scipy python-matplotlib
+
 install:
-  - pip install -r requirements.txt
+  - pip install pyserial
 
 script:
   - pytest

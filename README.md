@@ -1,4 +1,5 @@
-# Mobile Robotics Platform
+# Mobile Robotics Platform [![Build Status](https://travis-ci.org/Ridhwanluthra/Mobile_Robotics_Platform.svg?branch=master)](https://travis-ci.org/Ridhwanluthra/Mobile_Robotics_Platform)
+
 Includes all the essentials to building a mobile robot capable to knowing its location in a given map and finding its way from one location to the other.
 
 main.py

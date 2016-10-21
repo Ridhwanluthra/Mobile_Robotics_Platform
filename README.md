@@ -1,5 +1,4 @@
-# Mobile Robotics Platform [![Build Status](https://travis-ci.org/Ridhwanluthra/Mobile_Robotics_Platform.svg?branch=master)](https://travis-ci.org/Ridhwanluthra/Mobile_Robotics_Platform)
-
+# Mobile Robotics Platform	[![Build Status](https://travis-ci.org/Ridhwanluthra/Mobile_Robotics_Platform.svg?branch=master)](https://travis-ci.org/Ridhwanluthra/Mobile_Robotics_Platform)	[![Code Climate](https://codeclimate.com/github/Ridhwanluthra/Mobile_Robotics_Platform/badges/gpa.svg)](https://codeclimate.com/github/Ridhwanluthra/Mobile_Robotics_Platform)	[![Issue Count](https://codeclimate.com/github/Ridhwanluthra/Mobile_Robotics_Platform/badges/issue_count.svg)](https://codeclimate.com/github/Ridhwanluthra/Mobile_Robotics_Platform)
 Includes all the essentials to building a mobile robot capable to knowing its location in a given map and finding its way from one location to the other.
 
 main.py

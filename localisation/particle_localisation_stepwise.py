@@ -556,13 +556,19 @@ for i in range(n):
 #plt.axis([0,10,0,10])
 plt.show()
 for i in range(t):
-    myrobot = myrobot.move(0, 0.5)
+    if t == 10:
+        myrobot.move(90,0.5)
+    else:
+        myrobot = myrobot.move(0, 0.5)
     myrobot.set_sense_orient()
     z = myrobot.sense()
 
     p2 = []
     for i in range(n):
-        p2.append(p[i].move(0, 0.5))
+        if t == 10:
+            p2.append(p[i].move(90,0.5))
+        else:
+            p2.append(p[i].move(0, 0.5))
     p = p2
 
     w = []
@@ -583,10 +589,10 @@ for i in range(t):
     p = p3
     #print p
     print eval(myrobot, p)
-for i in xrange(n):
-	plt.plot(p[i].x,p[i].y, '.')
-plt.axis([0,10,0,10])
-plt.show()
+    for i in xrange(n):
+        plt.plot(p[i].x,p[i].y, '.')
+    plt.axis([0,10,0,10])
+    plt.show()
 """
 if eval(myrobot, p) > 15.0:
     for i in range(n):
